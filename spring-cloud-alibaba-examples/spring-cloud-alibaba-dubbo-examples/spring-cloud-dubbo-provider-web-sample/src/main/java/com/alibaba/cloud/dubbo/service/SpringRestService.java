@@ -19,7 +19,7 @@ package com.alibaba.cloud.dubbo.service;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.dubbo.config.annotation.Service;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,14 +39,14 @@ import static com.alibaba.cloud.dubbo.util.LoggerUtils.log;
  *
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  */
-@Service(version = "1.0.0")
+@DubboService(version = "1.0.0")
 @RestController
 public class SpringRestService implements RestService {
 
 	private Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Override
-	@GetMapping(value = "/param")
+	@GetMapping("/param")
 	public String param(@RequestParam String param) {
 		log("/param", param);
 		return param;
@@ -84,7 +84,8 @@ public class SpringRestService implements RestService {
 	}
 
 	@Override
-	@PostMapping(value = "/request/body/map", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PostMapping(value = "/request/body/map",
+			produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public User requestBodyMap(@RequestBody Map<String, Object> data,
 			@RequestParam("param") String param) {
 		User user = new User();
@@ -95,7 +96,8 @@ public class SpringRestService implements RestService {
 		return user;
 	}
 
-	@PostMapping(value = "/request/body/user", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PostMapping(value = "/request/body/user",
+			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@Override
 	public Map<String, Object> requestBodyUser(@RequestBody User user) {
 		Map<String, Object> map = new HashMap<>();

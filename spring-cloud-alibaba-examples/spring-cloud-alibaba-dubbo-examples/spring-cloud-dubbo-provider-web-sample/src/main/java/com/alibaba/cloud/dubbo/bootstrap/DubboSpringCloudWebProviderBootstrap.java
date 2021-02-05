@@ -22,6 +22,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * Dubbo Spring Cloud Provider Bootstrap.
+ *
+ * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  */
 @EnableDiscoveryClient
 @EnableAutoConfiguration
@@ -31,4 +33,5 @@ public class DubboSpringCloudWebProviderBootstrap {
 		new SpringApplicationBuilder(DubboSpringCloudWebProviderBootstrap.class)
 				.properties("spring.profiles.active=nacos").run(args);
 	}
+
 }
